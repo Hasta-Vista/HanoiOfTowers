@@ -9,18 +9,28 @@ static void HanoiOfTowers(int disks, int first, int third, int second, int* coun
 		massiv[*counter][0] = first;
 		massiv[*counter][1] = third;
 		(*counter)++;
+		if (*counter == size + 1) {
+			massiv = (int**)realloc(massiv, (size + 10) * sizeof(int));
+			size = size + 10;
+			for (int i = size - 10 ; i != size ; ++i) {
+				massiv[i] = (int*)malloc(sizeof(int) * 2);
+			}
+		}
+
 		HanoiOfTowers(disks - 1, second, third, first, counter, massiv, size);
 		
 	}
 }
 int main()
 {
-	int size = 11;
+	int size = 10;
 	int counter = 0;
-	int** massiv = new int* [size];
+	int** massiv = (int**)malloc(sizeof(int) * size);
+	
 	for (int i = 0; i != size; ++i) {
-		massiv[i] = new int[2];
+		massiv[i] = (int*)malloc (sizeof(int) * 2);
 	}
+	
 	int disks;
 	cin >> disks;
 	const int peg1 = 1, peg2 = 2, peg3 = 3;
@@ -29,5 +39,6 @@ int main()
 	for (int i = 0; i != counter; ++i) {
 		cout << massiv[i][0] << " " << massiv[i][1] << endl;
 	}
+
 	return 0;
 }
