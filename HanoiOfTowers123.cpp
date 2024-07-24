@@ -15,7 +15,7 @@ static void HanoiOfTowers(int disks, int first, int third, int second, int* coun
 }
 int main()
 {
-	int size = 10;
+	int size = 11;
 	int counter = 0;
 	int** massiv = new int* [size];
 	for (int i = 0; i != size; ++i) {
